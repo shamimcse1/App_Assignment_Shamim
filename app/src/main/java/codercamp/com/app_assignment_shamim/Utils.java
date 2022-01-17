@@ -75,8 +75,7 @@ public class Utils {
                         @SuppressLint({"SetTextI18n", "NotifyDataSetChanged"})
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            //Dialog will show
-                            //progressDialog.show();
+
                             if (task.isSuccessful() && task.getResult() != null) {
                                 progressDialog.dismiss();
 
