@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App_assignment_shamim">
         <activity
+            android:name=".view.PreviewsOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.DetailsActivity"
             android:exported="false" />
         <activity

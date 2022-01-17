@@ -1,10 +1,14 @@
 package codercamp.com.app_assignment_shamim.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,7 +25,6 @@ import codercamp.com.app_assignment_shamim.model.Model;
 import codercamp.com.app_assignment_shamim.viewModel.WaiterAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView userType, userType1;
     private LinearLayout userTypeLayout, waiterTypeLayout;
     private String value;
     private RecyclerView userTypeRecycler, waiterTypeRecycler;
@@ -37,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         userTypeLayout = findViewById(R.id.LinearUser);
         waiterTypeLayout = findViewById(R.id.LinearWaiter);
 
-        userTypeRecycler = findViewById(R.id.RecyclerviewUser);
-        waiterTypeRecycler = findViewById(R.id.RecyclerviewWaiter);
+
+
         //modelList.clear();
 
 
@@ -61,9 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     private void waiterData() {
+        waiterTypeRecycler = findViewById(R.id.RecyclerviewWaiter);
         waiterTypeRecycler.setHasFixedSize(true);
         waiterTypeRecycler.setLayoutManager(new LinearLayoutManager(this));
-        //waiterModels = Utils.readWaiterPref(this);
+        waiterModels = Utils.readWaiterPref(this);
         if (waiterModels == null){
             waiterModels = new ArrayList<>();
         }
@@ -76,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void userData() {
+        userTypeRecycler = findViewById(R.id.RecyclerviewUser);
         userTypeRecycler.setHasFixedSize(true);
         userTypeRecycler.setLayoutManager(new LinearLayoutManager(this));
         modelList = Utils.readList(this);
@@ -89,4 +94,26 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.item1:
+                startActivity(new Intent(MainActivity.this,PreviewsOrderActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+
 }

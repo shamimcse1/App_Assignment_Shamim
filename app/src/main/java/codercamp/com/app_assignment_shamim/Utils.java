@@ -85,6 +85,7 @@ public class Utils {
                                     //String documentID = document.getId();
                                     WaiterModel model = document.toObject(WaiterModel.class);
                                     waiterModel.add(model);
+                                    Log.d("TAG", model.getTitle());
 
                                 }
 
